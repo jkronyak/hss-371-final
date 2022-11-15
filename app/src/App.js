@@ -8,6 +8,8 @@ import {
 
 import Home from './components/Home';
 import Shop from './components/Shop';
+import Results from './components/Results';
+import About from './components/About';
 
 function App() {
   return (
@@ -28,6 +30,20 @@ function App() {
           >
               Shop
           </Typography>
+          <Typography 
+            href="/results"
+            component="a"
+            sx={{ m: 2}}
+          >
+              Results
+          </Typography>
+          <Typography 
+            href="/about"
+            component="a"
+            sx={{ m: 2}}
+          >
+              About
+          </Typography>
         </Toolbar>
       </AppBar>
       <h1>HSS 371 Final Project</h1>
@@ -39,6 +55,9 @@ function App() {
           */}
           <Route path='/' element={<Home/>}></Route>
           <Route path='/shop' element={<Shop/>}></Route>
+          <Route path='/results' element={<Results/>}></Route>
+          <Route path='/about' element={<About/>}></Route>
+
         </Routes>
       </Router>
     </div>
