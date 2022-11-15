@@ -7,6 +7,7 @@ import {
 
 
 import Home from './components/Home';
+import Shop from './components/Shop';
 
 function App() {
   return (
@@ -16,16 +17,16 @@ function App() {
           <Typography 
             href="/"
             component="a"
-            sx={{}}
+            sx={{ m: 2}}
           >
               Home
           </Typography>
           <Typography 
-            href="/store"
+            href="/shop"
             component="a"
-            sx={{}}
+            sx={{ m: 2}}
           >
-              Home
+              Shop
           </Typography>
         </Toolbar>
       </AppBar>
@@ -37,7 +38,7 @@ function App() {
             Each Route is associated with a Component.
           */}
           <Route path='/' element={<Home/>}></Route>
-          <Route path='/store' element={<Home/>}></Route>
+          <Route path='/shop' element={<Shop/>}></Route>
         </Routes>
       </Router>
     </div>
