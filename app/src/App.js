@@ -1,23 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+import {
+  AppBar, Toolbar, Typography
+} from "@mui/material";
+
+
+import Home from './components/Home';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppBar position="sticky">
+        <Toolbar>
+          <Typography 
+            href="/"
+            component="a"
+            sx={{}}
+          >
+              Home
+          </Typography>
+          <Typography 
+            href="/store"
+            component="a"
+            sx={{}}
+          >
+              Home
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <h1>HSS 371 Final Project</h1>
+      <Router>
+        <Routes>
+          {/* 
+            This is where we define our Routes. 
+            Each Route is associated with a Component.
+          */}
+          <Route path='/' element={<Home/>}></Route>
+          <Route path='/store' element={<Home/>}></Route>
+        </Routes>
+      </Router>
     </div>
   );
 }
