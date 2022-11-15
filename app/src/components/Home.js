@@ -4,7 +4,7 @@ const Home = () => {
 
     return(
         <div>
-            <p>I am in the Home component!</p>
+            <p onMouseOver={() => console.log("FOCUSED")}>I am in the Home component!</p>
         </div>
     )
 

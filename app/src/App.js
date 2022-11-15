@@ -12,6 +12,8 @@ import Results from './components/Results';
 import About from './components/About';
 
 function App() {
+
+
   return (
     <div className="App">
       <AppBar position="sticky">
