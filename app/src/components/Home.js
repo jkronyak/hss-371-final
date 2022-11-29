@@ -8,7 +8,7 @@ const Home = () => {
     return(
         <div>
             <p>I am in the Home component!</p>
-
+            <p>Welcome to our website! Here, you can shop the goods that we are currently offering.</p>
             <p onMouseOver={() => console.log("Hovered")}>Hover over me!</p>
             
             <p 
