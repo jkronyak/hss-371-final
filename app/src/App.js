@@ -10,6 +10,7 @@ import Home from './components/Home';
 import Shop from './components/Shop';
 import Results from './components/Results';
 import About from './components/About';
+import ShopItemPage from './components/ShopItemPage';
 
 function App() {
 
@@ -57,6 +58,7 @@ function App() {
           */}
           <Route path='/' element={<Home/>}></Route>
           <Route path='/shop' element={<Shop/>}></Route>
+          <Route path='/shop/:id' element={<ShopItemPage/>}></Route>
           <Route path='/results' element={<Results/>}></Route>
           <Route path='/about' element={<About/>}></Route>
 

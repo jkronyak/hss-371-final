@@ -6,7 +6,7 @@ import {
     Grid
 } from '@mui/material';
 
-import ShopGridItems from './ShopGridItem';
+import ShopGridItem from './ShopGridItem';
 
 const Shop = () => {
 
@@ -15,11 +15,11 @@ const Shop = () => {
     return(
         <div>
             <p>I am in the Shop Component.</p>
-            <Grid container spacing={2}>
+            <Grid container spacing={2}   alignItems="center" justifyContent="center">
                 {
                     shopItems.map((item) => {
                         return(
-                            <ShopGridItems item={item} key={item.id}/>
+                            <ShopGridItem item={item} key={item.id}/>
                         )
                     })
                 }
