@@ -42,3 +42,8 @@
   max-width: 192px;
   max-height: 192px;
 }
+
+.store-page-img { 
+  max-width: 768px;
+  max-height: 768px;
+}

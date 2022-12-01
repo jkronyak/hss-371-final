@@ -36,7 +36,9 @@ const ShopGridItem = (props) => {
             <img className="store-item-img" src={props.item.imageUrl}></img>
             <p>{props.item.name}</p>
             <p>{props.item.price}</p>
-            <Button variant="contained" onClick={() => onViewButtonPressed()}>View</Button>
+            <Link to={`/shop/${props.item.id}`}>
+                <Button variant="contained" onClick={() => onViewButtonPressed()}>View</Button>
+            </Link>
         </Grid>
     )
 }
