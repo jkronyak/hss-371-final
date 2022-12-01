@@ -11,6 +11,7 @@ import Shop from './components/Shop';
 import Results from './components/Results';
 import About from './components/About';
 import ShopItemPage from './components/ShopItemPage';
+import NavigationHeader from './components/NavigationHeader'
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
     <div className="App">
       <AppBar position="sticky">
         <Toolbar>
-          <Typography 
+           <Typography 
             href="/"
             component="a"
             sx={{ m: 2}}
@@ -46,11 +47,14 @@ function App() {
             sx={{ m: 2}}
           >
               About
-          </Typography>
+          </Typography> 
         </Toolbar>
       </AppBar>
       <h1>HSS 371 Final Project</h1>
       <Router>
+        <header>
+          <NavigationHeader/>
+        </header>
         <Routes>
           {/* 
             This is where we define our Routes. 

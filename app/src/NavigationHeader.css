@@ -1,0 +1,9 @@
+nav.navigation > * { 
+    display: inline;
+    padding: 8px;
+}
+
+nav > * { 
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
