@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 import { useSelector, useDispatch } from 'react-redux';
+import actions from '../actions';
 
 import {
     Grid,
-    Button,
-    Box
+    Button
 } from '@mui/material';
 
 
@@ -16,7 +18,7 @@ const ShopGridItem = (props) => {
 
     const onViewButtonPressed = () => { 
         console.log("View Button Pressed");
-        dispatch({type: "ADD_INTERACTION", payload: {type: "SHOP_ITEM_BUTTON_PRESS", timestamp: Date.now(), item: props.item.id}});
+        dispatch(actions.addInteraction({type: "SHOP_ITEM_BUTTON_PRESS", timestamp: Date.now(), item: props.item.id}));
     };
     
     return(
@@ -28,14 +30,13 @@ const ShopGridItem = (props) => {
                 m: 4,
                 p: 2,
                 height: '400px',
-                width: '300px'            }}
+                width: '300px'            
+            }}
         >  
-            {/* <Box sx={{ width: '24px', height: '24px' }}> */}
-                <img className="store-item-img" src={props.item.imageUrl}></img>
-            {/* </Box> */}
+            <img className="store-item-img" src={props.item.imageUrl}></img>
             <p>{props.item.name}</p>
             <p>{props.item.price}</p>
-            <Button variant="contained">View</Button>
+            <Button variant="contained" onClick={() => onViewButtonPressed()}>View</Button>
         </Grid>
     )
 }
