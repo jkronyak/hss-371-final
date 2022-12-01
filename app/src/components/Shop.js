@@ -15,7 +15,7 @@ const Shop = () => {
     return(
         <div>
             <p>I am in the Shop Component.</p>
-            <Grid container spacing={2}   alignItems="center" justifyContent="center">
+            <Grid container spacing={2} alignItems="center" justifyContent="center">
                 {
                     shopItems.map((item) => {
                         return(

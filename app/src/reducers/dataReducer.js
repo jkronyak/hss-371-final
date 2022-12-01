@@ -2,10 +2,10 @@ import { v4 as uuid } from 'uuid';
 
 const initialState = { 
     shopItems: [
-        { id: uuid(), name: 'Laplop', price: 999.99, imageUrl: "" },
-        { id: uuid(), name: 'Mobile', price: 499.99, imageUrl: "" },
-        { id: uuid(), name: 'Tablet', price: 299.99, imageUrl: "" },
-        { id: uuid(), name: 'Headphones', price: 199.99, imageUrl: "" },
+        { id: uuid(), name: 'Laplop', price: 999.99, imageUrl: "https://i.imgur.com/JIC8rD3.png" },
+        { id: uuid(), name: 'Mobile Phone', price: 499.99, imageUrl: "https://i.imgur.com/XXYPV6t.png" },
+        { id: uuid(), name: 'Tablet', price: 299.99, imageUrl: "https://i.imgur.com/JihTnnl.png" },
+        { id: uuid(), name: 'Headphones', price: 199.99, imageUrl: "https://i.imgur.com/4r6tcOv.png" },
         { id: uuid(), name: 'Keyboard', price: 99.99, imageUrl: "" },
         { id: uuid(), name: 'Mouse', price: 49.99, imageUrl: "" },
     ],
