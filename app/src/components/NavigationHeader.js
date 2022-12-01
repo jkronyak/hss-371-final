@@ -6,7 +6,7 @@ import '../NavigationHeader.css'
 const NavigationHeader = ()  => { 
 
     return(
-        <div>
+        <div className='nav-div'>
             <nav className='navigation'>
                 <Link to='/'>Home</Link>
                 <Link to='/shop'>Shop</Link>
