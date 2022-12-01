@@ -15,7 +15,6 @@ const Shop = () => {
 
     return(
         <div>
-            <Link to='/results'>Results Test Link</Link>
             <p>I am in the Shop Component.</p>
             <Grid container spacing={2} alignItems="center" justifyContent="center">
                 {
