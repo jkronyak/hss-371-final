@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 import {
-  AppBar, Toolbar, Typography
+  AppBar, Toolbar, Typography, Tab
 } from "@mui/material";
 
 
@@ -65,7 +65,6 @@ function App() {
           <Route path='/shop/:id' element={<ShopItemPage/>}></Route>
           <Route path='/results' element={<Results/>}></Route>
           <Route path='/about' element={<About/>}></Route>
-
         </Routes>
       </Router>
     </div>
