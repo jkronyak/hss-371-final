@@ -11,4 +11,4 @@ const addItemToCart = (cartItem) => ({
 module.exports = { 
     addInteraction,
     addItemToCart
-}
+};
