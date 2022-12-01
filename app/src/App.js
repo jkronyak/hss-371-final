@@ -1,10 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
-import {
-  AppBar, Toolbar, Typography
-} from "@mui/material";
-
 
 import Home from './components/Home';
 import Shop from './components/Shop';
