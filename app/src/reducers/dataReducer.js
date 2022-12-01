@@ -1,8 +1,7 @@
-import { v4 as uuid } from 'uuid';
 
 const initialState = { 
     shopItems: [
-        { id: 1, name: 'Laplop', price: 999.99, imageUrl: "https://i.imgur.com/o26wJAR.png", description: "An excellent laptop!" },
+        { id: 1, name: 'Laptop', price: 999.99, imageUrl: "https://i.imgur.com/o26wJAR.png", description: "" },
         { id: 2, name: 'Mobile Phone', price: 499.99, imageUrl: "https://i.imgur.com/wWVoCQU.png", description: "" },
         { id: 3, name: 'Tablet', price: 299.99, imageUrl: "https://i.imgur.com/fXoH2Ha.png", description: "" },
         { id: 4, name: 'Headphones', price: 199.99, imageUrl: "https://i.imgur.com/4r6tcOv.png", description: "" },
