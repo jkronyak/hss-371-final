@@ -30,7 +30,6 @@ function App() {
           <Route path='/shop/:id' element={<ShopItemPage/>}></Route>
           <Route path='/results' element={<Results/>}></Route>
           <Route path='/about' element={<About/>}></Route>
-
         </Routes>
       </Router>
     </div>
