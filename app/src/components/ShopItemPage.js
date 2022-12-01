@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
+import { Link as ReactLink } from 'react-router-dom';
 import actions from '../actions';
 
 import { 
-    Box, Typography, Button
+    Box, Typography, Button, Link
 } from '@mui/material';
 
 const ShopItemPage = () => {
