@@ -18,43 +18,12 @@ function App() {
 
   return (
     <div className="App">
-      <AppBar position="sticky">
-        <Toolbar>
-           <Typography 
-            href="/"
-            component="a"
-            sx={{ m: 2}}
-          >
-              Home
-          </Typography>
-          <Typography 
-            href="/shop"
-            component="a"
-            sx={{ m: 2}}
-          >
-              Shop
-          </Typography>
-          <Typography 
-            href="/results"
-            component="a"
-            sx={{ m: 2}}
-          >
-              Results
-          </Typography>
-          <Typography 
-            href="/about"
-            component="a"
-            sx={{ m: 2}}
-          >
-              About
-          </Typography> 
-        </Toolbar>
-      </AppBar>
-      <h1>HSS 371 Final Project</h1>
+      
       <Router>
         <header>
           <NavigationHeader/>
         </header>
+		<h1>HSS 371 Final Project</h1>
         <Routes>
           {/* 
             This is where we define our Routes. 
