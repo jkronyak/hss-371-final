@@ -38,9 +38,7 @@ const dataReducer = (state = initialState, action) => {
     switch(type) { 
         case 'ADD_INTERACTION':
             copyState = { ...state };
-            console.log(payload);
             copyState.userData.interactions.push(payload);
-            console.log(copyState);
             return copyState;
         case 'ADD_ITEM_TO_CART':
             copyState = { ...state };

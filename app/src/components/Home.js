@@ -1,6 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import actions from '../actions';
 
@@ -21,7 +20,6 @@ const Home = () => {
 
     return(
         <div>
-            <p>I am in the Home component!</p>
             <p>Welcome to our website! Here, you can shop the goods that we are currently offering.</p>
             <p onMouseOver={() => console.log("Hovered")}>Hover over me!</p>
 

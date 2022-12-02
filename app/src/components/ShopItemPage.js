@@ -7,7 +7,7 @@ import actions from '../actions';
 import '../ShopItemPage.css'; 
 
 import { 
-    Box, Typography, Button, Card, CardHeader, CardActions, CardMedia
+    Box, Typography, Button
 } from '@mui/material';
 
 const ShopItemPage = () => {
@@ -28,12 +28,6 @@ const ShopItemPage = () => {
         console.log("Remove from Cart Clicked");
         dispatch(actions.removeItemFromCart(id));
     }
-
-    useEffect(() => { 
-        console.log("useEffect fired");
-        console.log(shoppingCart);
-    }, [shoppingCart]);
-
 
     return(
         <Box className='store-item-page-box' sx={{maxWidth: '66%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '32px',padding: '16px'}}>
