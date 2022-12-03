@@ -53,13 +53,13 @@ const ShopGridItem = (props) => {
 				boxShadow: '2px 2px 10px;'
             }}
         >  
-            <img className="store-item-img" src={props.item.imageUrl}
+            <img className="store-item-img" src={props.item.imageUrl} alt={props.item.name}
 				onClick={ (e) => { handleClick(e, "STORE_ITEM_IMAGE")}}
 				onMouseEnter={(e) => handleMouseEnter(e)}
 				onMouseLeave={(e) => handleMouseLeave(e, `STORE_ITEM_IMAGE`)}
 			></img>
             <Typography>{props.item.name}</Typography>
-            <Typography>{props.item.price}</Typography>
+            <Typography>${props.item.price}</Typography>
             <Link to={`/shop/${props.item.id}`}>
                 <Button variant="contained" 
 				onClick={() => onViewButtonPressed()}

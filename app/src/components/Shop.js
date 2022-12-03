@@ -9,6 +9,9 @@ import {
 
 import ShopGridItem from './ShopGridItem';
 
+import { v4 as uuid } from 'uuid';
+
+
 const Shop = () => {
 
     const dispatch = useDispatch();
@@ -45,8 +48,11 @@ const Shop = () => {
 
 
 	useEffect(() => {
-		dispatch(actions.addInteraction({type: 'PAGE_VISIT', target: 'SHOP', timestamp: Date.now()}));
-
+		const visitId = uuid();
+		dispatch(actions.addInteraction({id: visitId, type: 'PAGE_VISIT', target: 'SHOP', timestamp: Date.now()}));
+		return () => { 
+			dispatch(actions.editInteractionDuration({id: visitId, timestamp: Date.now()}));
+		}
 	}, [dispatch]);
 
     return(

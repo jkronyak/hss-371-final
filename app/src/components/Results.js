@@ -5,7 +5,16 @@ import actions from '../actions';
 
 import axios from 'axios';
 
-import InteractionResult from './InteractionResult';
+import { v4 as uuid } from 'uuid';
+
+import { 
+	Box
+} from '@mui/material';
+
+import { 
+	DataGrid
+} from '@mui/x-data-grid';
+
 
 const Results = () => { 
 
@@ -21,6 +30,7 @@ const Results = () => {
 	const [data, setData] = useState({});
 
 	useEffect ( () => {
+		
 		const getData = async() => {
 			try {
 				const res = await axios.get('https://geolocation-db.com/json/');
@@ -31,8 +41,12 @@ const Results = () => {
 
 		}
 		getData();
-		dispatch(actions.addInteraction({type: 'PAGE_VISIT', target: 'RESULTS', timestamp: Date.now()}));
-	}, [])
+		const visitId = uuid();
+		dispatch(actions.addInteraction({id: visitId, type: 'PAGE_VISIT', target: 'RESULTS', timestamp: Date.now(), item: "N/A"}));
+		return () => { 
+			dispatch(actions.editInteractionDuration({id: visitId, timestamp: Date.now()}));
+		}
+	}, [dispatch])
 
 	
 	const detectBrowser = () => { 
@@ -65,26 +79,45 @@ const Results = () => {
 	}
 	const operSys = () => {
 		var OperSysName="Unknown OS";
-		if (navigator.userAgent.indexOf("Win")!=-1) OperSysName="Windows";
-		if (navigator.userAgent.indexOf("Mac")!=-1) OperSysName="MacOS";
-		if (navigator.userAgent.indexOf("X11")!=-1) OperSysName="UNIX";
-		if (navigator.userAgent.indexOf("Linux")!=-1) OperSysName="Linux";
+		if (navigator.userAgent.indexOf("Win") !==- 1) OperSysName = "Windows";
+		if (navigator.userAgent.indexOf("Mac") !== -1) OperSysName = "MacOS";
+		if (navigator.userAgent.indexOf("X11") !== -1) OperSysName = "UNIX";
+		if (navigator.userAgent.indexOf("Linux") !== -1) OperSysName = "Linux";
 		return OperSysName;
 		// document.getElementById("OS").innerHTML = "The current operating system used in this machine is " + OperSysName;
-	 }
+	}
 
-	console.log("")
+	const rows = interactions.map((interaction) => { 
+		return {
+			id: interaction.id,
+			type: interaction.type,
+			target: interaction.target,
+			timestamp: new Date(interaction.timestamp).toLocaleString(),
+			item: interaction.item,
+			duration: interaction.duration / 1000 || 'N/A',
+		}
+	})
+
+	// Interaction Type, Target, Timestamp, Item
+	const columns = [
+		{ field: 'type', headerName: 'Interaction Type', width: 175 },
+		{ field: 'target', headerName: 'Target', width: 175 },
+		{ field: 'timestamp', headerName: 'Timestamp', width: 175 },
+		{ field: 'item', headerName: 'Item (If Any)', width: 175 },
+		{ field: 'duration', headerName: 'Duration (Seconds)', width: 175 },
+	];
+
 
     return(
 		<div>
 			<h2>Interactions</h2>
-			{ 
-				interactions.map((interaction) => { 
-					return(
-						<InteractionResult key={interaction.id} interaction={interaction}/>					
-					)
-				})
-			}
+			<div>
+				<Box sx={{width: '66%', marginLeft: 'auto', marginRight: 'auto'}}>
+
+					{ rows && columns ? <DataGrid rows={rows} columns={columns} autoHeight/> : null }
+				</Box>
+					
+			</div>
 
 			<h2>Cart</h2>
 			{
@@ -103,9 +136,9 @@ const Results = () => {
 			<p>Your Machine Platform is {navigator.platform}</p>
 			{navigator.cookieEnabled ? <p>Your cookies are enabled</p>: <p>Your cookies are disabled</p>}
 			<p>Your Browser Agent is {navigator.userAgent}</p>
-			<p>Your Internet Service Provider location is {data.city}, {data.state}</p>
-			<p>Browser: {detectBrowser()}</p>
-			<p>OS: {operSys()}</p>
+			{ data.city? <p>Your ISP location is {data.city}, {data.state}</p> : <p>Your ISP location cannot be confirmed</p>}
+			<p>Your Browser is {detectBrowser()}</p>
+			<p>Your Operating System is {operSys()}</p>
 		</div>
 	)
     

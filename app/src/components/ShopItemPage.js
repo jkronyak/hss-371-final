@@ -10,6 +10,9 @@ import {
     Box, Typography, Button
 } from '@mui/material';
 
+import { v4 as uuid } from 'uuid';
+
+
 const ShopItemPage = () => {
     const { id } = useParams();
     
@@ -52,8 +55,12 @@ const ShopItemPage = () => {
 
 
 	useEffect(() => {
-		dispatch(actions.addInteraction({type: 'PAGE_VISIT', target: 'SHOP_ITEM_PAGE', timestamp: Date.now(), item: itemData.name}));
+		const visitId = uuid();
 
+		dispatch(actions.addInteraction({id: visitId, type: 'PAGE_VISIT', target: 'SHOP_ITEM_PAGE', timestamp: Date.now(), item: itemData.name}));
+		return () => { 
+			dispatch(actions.editInteractionDuration({id: visitId, timestamp: Date.now()}));
+		}
 	}, [dispatch, itemData.name]);
 
     return(
@@ -66,7 +73,7 @@ const ShopItemPage = () => {
 				onMouseLeave={(e) => handleMouseLeave(e, `STORE_ITEM_IMAGE`)}
 				/>
 			<Typography>{itemData.description}</Typography>
-            <Typography>Price: {itemData.price}</Typography>
+            <Typography>Price: ${itemData.price}</Typography>
 			{
 				shoppingCart.some((curCartItem) => { return curCartItem.id === itemData.id })
 				? <Button sx={{m: 2}} variant="contained" 

@@ -38,7 +38,7 @@ const dataReducer = (state = initialState, action) => {
     switch(type) { 
         case 'ADD_INTERACTION':
             copyState = { ...state };
-            copyState.userData.interactions.push({...payload, id: uuid()});
+            copyState.userData.interactions.push({...payload, timestamp: payload.timestamp, id: payload.id ? payload.id : uuid(), item: payload.item ? payload.item : "N/A", duration: payload.duration ? payload.duration : 0});
             return copyState;
         case 'ADD_ITEM_TO_CART':
             copyState = { ...state };
@@ -49,6 +49,13 @@ const dataReducer = (state = initialState, action) => {
             index = copyState.shoppingCart.findIndex((item) => item.id === payload);
             copyState.shoppingCart.splice(index, 1);
             return copyState;
+		case 'EDIT_INTERACTION_DURATION':
+			copyState = { ...state };
+			index = copyState.userData.interactions.findIndex((item) => item.id === payload.id);
+			console.log(payload);
+			// console.log(copyState.userData.interactions[index].timestamp);
+			copyState.userData.interactions[index].duration = payload.timestamp - copyState.userData.interactions[index].timestamp;
+			return copyState;
         default: 
             return state;
     }

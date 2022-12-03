@@ -13,8 +13,14 @@ const removeItemFromCart = (itemId) => ({
     payload: itemId
 });
 
+const editInteractionDuration = (data) => ({
+	type: 'EDIT_INTERACTION_DURATION',
+	payload: {id: data.id, timestamp: data.timestamp}
+});
+
 module.exports = { 
     addInteraction,
     addItemToCart, 
-    removeItemFromCart
+    removeItemFromCart,
+	editInteractionDuration
 };
