@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { Link as ReactLink } from 'react-router-dom';
 import actions from '../actions';
 
+import '../ShopItemPage.css'; 
 
 import { 
-    Box, Typography, Button, Link
+    Box, Typography, Button
 } from '@mui/material';
 
 const ShopItemPage = () => {
@@ -29,24 +29,19 @@ const ShopItemPage = () => {
         dispatch(actions.removeItemFromCart(id));
     }
 
-    useEffect(() => { 
-        console.log("useEffect fired");
-        console.log(shoppingCart);
-    }, [shoppingCart]);
-
-
     return(
-        <Box sx={{maxWidth: '66%', marginLeft: 'auto', marginRight: 'auto'}}>
-            <p>I am the ShopItemPage component!</p>
-            <Typography variant='h2' sx={{}}>{itemData.name}</Typography>
-            <img className="store-page-img" src={itemData.imageUrl} alt={itemData.name}/>
-            <Typography>Price: {itemData.price}</Typography>
-            {
-                shoppingCart.some((curCartItem) => { return curCartItem.id === itemData.id })
-                    ? <Button variant="contained" onClick={() => handleRemoveFromCartClick()}>Remove From Cart</Button>
-                    : <Button variant="contained" onClick={() => handleAddToCartClick()} >Add To Cart</Button>
+        <Box className='store-item-page-box' sx={{maxWidth: '40%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '32px',padding: '16px'}}>
+			<Typography variant='h2'>{itemData.name}</Typography>
 
-            }
+            <img className="store-page-img" src={itemData.imageUrl} alt={itemData.name}/>
+			<Typography>{itemData.description}</Typography>
+            <Typography>Price: {itemData.price}</Typography>
+			{
+				shoppingCart.some((curCartItem) => { return curCartItem.id === itemData.id })
+				? <Button sx={{m: 2}} variant="contained" onClick={() => handleRemoveFromCartClick()}>Remove From Cart</Button>
+				: <Button sx={{m: 2}} variant="contained" onClick={() => handleAddToCartClick()} >Add To Cart</Button>
+				
+			}
         </Box>
     )
 };

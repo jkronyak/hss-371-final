@@ -12,6 +12,7 @@ const NavigationHeader = ()  => {
                 <Link to='/shop'>Shop</Link>
                 <Link to='/results'>Results</Link>
                 <Link to='/about'>About</Link>
+                <Link to='/cart'>Cart</Link>
             </nav>
         </div>
     );

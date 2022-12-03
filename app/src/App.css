@@ -41,9 +41,13 @@
 .store-item-img { 
   max-width: 192px;
   max-height: 192px;
+  width: 67%;
+  height: 67%;
 }
 
 .store-page-img { 
-  max-width: 768px;
-  max-height: 768px;
+  max-width: 480px;
+  max-height: 480px;
+  width: 67%;
+  height: 67%;
 }

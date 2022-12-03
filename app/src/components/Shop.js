@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import react from 'react';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import actions from '../actions';
 
 import { 
     Grid
@@ -11,17 +11,35 @@ import ShopGridItem from './ShopGridItem';
 
 const Shop = () => {
 
-    const shopItems = useSelector((state) => state.data.shopItems);
+    const dispatch = useDispatch();
+
+
+	const allData = useSelector((state) => state.data);
+    const shopItems = allData.shopItems;
+	const shoppingCart = allData.shoppingCart;
+
+	const handleAddToCartClick = (item) => { 
+        console.log("Add to Cart Clicked");
+        dispatch(actions.addItemToCart(item));
+    }
+
+    const handleRemoveFromCartClick = (itemId) => {
+        console.log("Remove from Cart Clicked");
+        dispatch(actions.removeItemFromCart(itemId));
+	}
+
+
 
     return(
         <div>
-            <Link to='/results'>Results Test Link</Link>
-            <p>I am in the Shop Component.</p>
             <Grid container spacing={2} alignItems="center" justifyContent="center">
                 {
                     shopItems.map((item) => {
                         return(
-                            <ShopGridItem item={item} key={item.id}/>
+                            <ShopGridItem item={item} key={item.id} shoppingCart={shoppingCart}
+								handleAddToCartClick={handleAddToCartClick}
+								handleRemoveFromCartClick={handleRemoveFromCartClick}
+							/>
                         )
                     })
                 }
