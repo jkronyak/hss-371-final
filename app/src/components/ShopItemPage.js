@@ -30,7 +30,7 @@ const ShopItemPage = () => {
     }
 
     return(
-        <Box className='store-item-page-box' sx={{maxWidth: '66%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '32px',padding: '16px'}}>
+        <Box className='store-item-page-box' sx={{maxWidth: '40%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '32px',padding: '16px'}}>
 			<Typography variant='h2'>{itemData.name}</Typography>
 
             <img className="store-page-img" src={itemData.imageUrl} alt={itemData.name}/>

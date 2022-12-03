@@ -7,7 +7,8 @@ import actions from '../actions';
 
 import {
     Grid,
-    Button
+    Button,
+	Typography
 } from '@mui/material';
 
 
@@ -29,14 +30,14 @@ const ShopGridItem = (props) => {
                 outline: '1px solid black',
                 m: 4,
                 p: 2,
-                height: '400px',
-                width: '300px',
+                maxHeight: '400px',
+                maxwidth: '300px',
 				borderRadius: '15px',
 				boxShadow: '2px 2px 10px;'
             }}
         >  
             <img className="store-item-img" src={props.item.imageUrl}></img>
-            <p>{props.item.name}</p>
+            <Typography>{props.item.name}</Typography>
             <p>{props.item.price}</p>
             <Link to={`/shop/${props.item.id}`}>
                 <Button variant="contained" onClick={() => onViewButtonPressed()}>View</Button>

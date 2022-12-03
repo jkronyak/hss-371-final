@@ -7,6 +7,9 @@ import { Button } from '@mui/material';
 
 const Home = () => { 
     const dispatch = useDispatch();
+
+	dispatch(actions.addInteraction({type: 'PAGE_VISIT', page: 'Home', timestample: Date.now(), item: null}));
+
     const handleMouseOver = (e) => {
         console.log(e);
         dispatch(actions.addInteraction({type: "HOME_PAGE_MOUSE_HOVER", timestamp: Date.now(), item: null}));

@@ -24,7 +24,6 @@ const initialState = {
     ],
     userData: { 
         interactions: [ ],
-        cartChangeEvents: [ ],
         otherInfo: { }
     },
     shoppingCart: [ ]
