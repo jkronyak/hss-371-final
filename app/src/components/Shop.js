@@ -20,6 +20,7 @@ const Shop = () => {
 
 	const handleAddToCartClick = (item) => { 
         console.log("Add to Cart Clicked");
+        dispatch(actions.addInteraction({type: 'ADD_ITEM_TO_CART', timestamp: Date.now()}))
         dispatch(actions.addItemToCart(item));
     }
 
