@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { useSelector, useDispatch } from 'react-redux';
-import actions from '../actions';
+import { useSelector } from 'react-redux';
 
 import InteractionResult from './InteractionResult';
 
@@ -42,15 +41,3 @@ const Results = () => {
     
 }
 export default Results;
-
-/*
-			{
-				interactions.map((interaction) => {
-					console.log("SINGLE INTER", interaction);
-					return (
-						<p key={Math.random()}>{interaction.name}</p>
-					)
-				})
-
-			}
-*/

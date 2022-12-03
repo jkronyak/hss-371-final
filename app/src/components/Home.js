@@ -8,19 +8,6 @@ import { Button } from '@mui/material';
 const Home = () => { 
     const dispatch = useDispatch();
 
-	// dispatch(actions.addInteraction({type: 'PAGE_VISIT', page: 'Home', timestamp: Date.now()}));
-
-    const handleMouseOver = (e) => {
-        console.log(e);
-        dispatch(actions.addInteraction({type: "HOME_PAGE_MOUSE_HOVER", timestamp: Date.now()}));
-
-    }
-
-    const handleButtonClick = (e) => { 
-        console.log(e);
-        dispatch(actions.addInteraction({type: "HOME_PAGE_BUTTON_CLICK", timestamp: Date.now()}));
-    }
-
     useEffect(() => {
 		dispatch(actions.addInteraction({type: 'PAGE_VISIT', page: 'Home', timestamp: Date.now()}));
 
@@ -28,25 +15,12 @@ const Home = () => {
 
     return(
         <div>
-            <p>Welcome to our website! Here, you can shop the goods that we are currently offering.</p>
-            <p onMouseOver={() => console.log("Hovered")}>Hover over me!</p>
-
-            <p onMouseOver={(e) => handleMouseOver(e)}>Hover over me!</p>
-            
-            <p 
-                onMouseUp={() => dispatch(actions.addInteraction({type: 'MOUSE_UP_SELECTION', timestamp: Date.now(), selection: window.getSelection().toString()}))}
-                onDoubleClick={() => dispatch(actions.addInteraction({type: 'DOUBLE_CLICK_SELECTION', timestamp: Date.now(), selection: window.getSelection().toString()}))}
-            >
-                Highlight me!
+            <p>Our names are Jared Kronyak and Erik Anhorn, and we are seniors here at Stevens. </p>
+            <p>We are both Computer Science majors and security is very important to the both of us, which is why we 
+                chose this topic for our final project. 
             </p>
-            
-            <Button 
-                variant="contained"
-                onClick={(e) => handleButtonClick(e)}
-            >
-                Click Me!
-            </Button>
-
+            <br></br>
+            <p>We have put our paper on how we created the project below, we hope you found this website useful and informative!</p>
         </div>
     )
 

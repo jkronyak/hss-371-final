@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -16,12 +16,23 @@ import {
 const ShopGridItem = (props) => {
     
     const dispatch = useDispatch();
+	const [mouseHoverTime, setMouseHoverTime] = useState(0);
 
     const onViewButtonPressed = () => { 
         console.log("View Button Pressed");
-        dispatch(actions.addInteraction({type: "SHOP_VIEW_BUTTON_PRESS", timestamp: Date.now(), item: props.item.id}));
+        dispatch(actions.addInteraction({type: "CLICK", target: "SHOP_VIEW_BUTTON", timestamp: Date.now(), item: props.item.name}));
     };
 
+	const handleMouseEnter = (e) => { 
+		console.log("Mouse Enter");
+		setMouseHoverTime(Date.now());
+	}
+
+	const handleMouseLeave = (e, target) => { 
+		console.log("Mouse Leave");
+		dispatch(actions.addInteraction({type: 'HOVER', target: target, timestamp: Date.now(), duration: (Date.now() - mouseHoverTime), item: props.item.name}));
+	}
+	
     return(
         <Grid
             item 
@@ -40,12 +51,24 @@ const ShopGridItem = (props) => {
             <Typography>{props.item.name}</Typography>
             <p>{props.item.price}</p>
             <Link to={`/shop/${props.item.id}`}>
-                <Button variant="contained" onClick={() => onViewButtonPressed()}>View</Button>
+                <Button variant="contained" 
+				onClick={() => onViewButtonPressed()}
+				onMouseEnter={(e) => handleMouseEnter(e)}
+				onMouseLeave={(e) => handleMouseLeave(e, "VIEW_ITEM_BUTTON")}
+				>View</Button>
             </Link>
 			{
 				props.shoppingCart.some((curCartItem) => { return curCartItem.id === props.item.id })
-				? <Button sx={{m: 2}} variant="contained" onClick={() => props.handleRemoveFromCartClick(props.item.id)}>Remove From Cart</Button>
-				: <Button sx={{m: 2}} variant="contained" onClick={() => props.handleAddToCartClick(props.item)} >Add To Cart</Button>
+				? <Button sx={{m: 2}} variant="contained" 
+					onClick={() => props.handleRemoveFromCartClick(props.item.id)} 
+					onMouseEnter={(e) => handleMouseEnter(e)}
+					onMouseLeave={(e) => handleMouseLeave(e, "REMOVE_FROM_CART_BUTTON")}
+					>Remove From Cart</Button>
+				: <Button sx={{m: 2}} variant="contained" 
+					onClick={() => props.handleAddToCartClick(props.item)} 
+					onMouseEnter={(e) => handleMouseEnter(e)}
+					onMouseLeave={(e) => handleMouseLeave(e, "ADD_TO_CART_BUTTON")}
+					>Add To Cart</Button>
 				
 			}
         </Grid>

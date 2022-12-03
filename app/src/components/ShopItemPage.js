@@ -19,18 +19,39 @@ const ShopItemPage = () => {
 
     const dispatch = useDispatch();
 
+	const [mouseHoverTime, setMouseHoverTime] = useState(0);
+
     const handleAddToCartClick = () => { 
         console.log("Add to Cart Clicked");
+		dispatch(actions.addInteraction({type: 'CLICK', target: "ADD_TO_CART_BUTTON", timestamp: Date.now(), item: itemData.id}));
         dispatch(actions.addItemToCart(itemData));
     }
 
     const handleRemoveFromCartClick = () => {
         console.log("Remove from Cart Clicked");
+		dispatch(actions.addInteraction({type: 'CLICK', target: "REMOVE_FROM_CART_BUTTON", timestamp: Date.now(), item: itemData.id}));
         dispatch(actions.removeItemFromCart(id));
     }
 
+	const handleMouseEnter = (e) => { 
+		console.log("Mouse Enter");
+		console.log(e);
+		setMouseHoverTime(Date.now());
+	}
+
+	const handleMouseLeave = (e, target) => { 
+		console.log("Mouse Leave");
+		dispatch(actions.addInteraction({type: 'HOVER', target: target , timestamp: Date.now(), item: itemData.name, duration: (Date.now() - mouseHoverTime)}));
+	}
+
+	const handleClick = (e, target) => { 
+		console.log("Click");
+		dispatch(actions.addInteraction({type: 'CLICK', target: target , timestamp: Date.now(), item: itemData.name}));
+	};
+
+
 	useEffect(() => {
-		dispatch(actions.addInteraction({type: 'PAGE_VISIT', page: 'Shop', timestamp: Date.now()}));
+		dispatch(actions.addInteraction({type: 'PAGE_VISIT', target: 'SHOP_ITEM_PAGE', timestamp: Date.now()}));
 
 	}, [dispatch]);
 
@@ -38,13 +59,26 @@ const ShopItemPage = () => {
         <Box className='store-item-page-box' sx={{maxWidth: '40%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '32px',padding: '16px'}}>
 			<Typography variant='h2'>{itemData.name}</Typography>
 
-            <img className="store-page-img" src={itemData.imageUrl} alt={itemData.name}/>
+            <img className="store-page-img" src={itemData.imageUrl} alt={itemData.name} 
+				onClick={ (e) => { handleClick(e, "STORE_ITEM_IMAGE")}}
+				onMouseEnter={(e) => handleMouseEnter(e)}
+				onMouseLeave={(e) => handleMouseLeave(e, `STORE_ITEM_IMAGE`)}
+				/>
 			<Typography>{itemData.description}</Typography>
             <Typography>Price: {itemData.price}</Typography>
 			{
 				shoppingCart.some((curCartItem) => { return curCartItem.id === itemData.id })
-				? <Button sx={{m: 2}} variant="contained" onClick={() => handleRemoveFromCartClick()}>Remove From Cart</Button>
-				: <Button sx={{m: 2}} variant="contained" onClick={() => handleAddToCartClick()} >Add To Cart</Button>
+				? <Button sx={{m: 2}} variant="contained" 
+					onClick={() => handleRemoveFromCartClick()}
+					onMouseEnter={(e) => handleMouseEnter(e)}
+					onMouseLeave={(e) => handleMouseLeave(e, "REMOVE_FROM_CART_BUTTON")}
+					
+					>Remove From Cart</Button>
+				: <Button sx={{m: 2}} variant="contained" 
+					onClick={() => handleAddToCartClick()} 
+					onMouseEnter={(e) => handleMouseEnter(e)}
+					onMouseLeave={(e) => handleMouseLeave(e, "ADD_TO_CART_BUTTON")}
+				>Add To Cart</Button>
 				
 			}
         </Box>

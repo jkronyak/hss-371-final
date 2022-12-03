@@ -1,4 +1,4 @@
-import react, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import actions from '../actions';
@@ -12,6 +12,9 @@ import ShopGridItem from './ShopGridItem';
 const Shop = () => {
 
     const dispatch = useDispatch();
+	const [mouseHoverTime, setMouseHoverTime] = useState(0);
+
+
 
 	const allData = useSelector((state) => state.data);
     const shopItems = allData.shopItems;
@@ -19,18 +22,29 @@ const Shop = () => {
 
 	const handleAddToCartClick = (item) => { 
         console.log("Add to Cart Clicked");
-        dispatch(actions.addInteraction({type: 'ADD_ITEM_TO_CART', timestamp: Date.now(), item: item.id}));
+        dispatch(actions.addInteraction({type: 'CLICK', target: 'ADD_ITEM_TO_CART', timestamp: Date.now(), item: item.id}));
         dispatch(actions.addItemToCart(item));
     }
 
     const handleRemoveFromCartClick = (itemId) => {
         console.log("Remove from Cart Clicked");
-        dispatch(actions.addInteraction({type: 'REMOVE_ITEM_FROM_CART', timestamp: Date.now(), item: itemId}));
+        dispatch(actions.addInteraction({type: 'CLICK', target: 'REMOVE_ITEM_FROM_CART', timestamp: Date.now(), item: itemId}));
         dispatch(actions.removeItemFromCart(itemId));
 	}
 
+	const handleMouseEnter = (e) => { 
+		console.log("Mouse Enter");
+		setMouseHoverTime(Date.now());
+	}
+
+	const handleMouseLeave = (e, target) => { 
+		console.log("Mouse Leave");
+		dispatch(actions.addInteraction({type: 'HOVER', target: target , timestamp: Date.now(), duration: (Date.now() - mouseHoverTime)}));
+	}
+
+
 	useEffect(() => {
-		dispatch(actions.addInteraction({type: 'PAGE_VISIT', page: 'Shop', timestamp: Date.now()}));
+		dispatch(actions.addInteraction({type: 'PAGE_VISIT', target: 'SHOP', timestamp: Date.now()}));
 
 	}, [dispatch]);
 

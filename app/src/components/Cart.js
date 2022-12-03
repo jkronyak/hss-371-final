@@ -13,22 +13,25 @@ const Cart = () => {
 
     const handleAddToCartClick = (item) => { 
         console.log("Add to Cart Clicked");
+        dispatch(actions.addInteraction({type: 'CLICK', target: "ADD_TO_CART_BUTTON", timestamp: Date.now(), item: item.id}));
         dispatch(actions.addItemToCart(item));
     }
 
     const handleRemoveFromCartClick = (itemId) => {
         console.log("Remove from Cart Clicked");
+        dispatch(actions.addInteraction({type: 'CLICK', target: "REMOVE_FROM_CART_BUTTON", timestamp: Date.now(), item: itemId}));
         dispatch(actions.removeItemFromCart(itemId));
 	}
 
+	
+
     useEffect(() => {
-		dispatch(actions.addInteraction({type: 'PAGE_VISIT', page: 'Cart', timestamp: Date.now()}));
+		dispatch(actions.addInteraction({type: 'PAGE_VISIT', target: 'Cart', timestamp: Date.now()}));
 
 	}, [dispatch]);
 
     return(
         <div>
-            <p>I'm the Cart Component</p>
             <List sx={{maxWidth: '40%', marginLeft: 'auto', marginRight: 'auto', padding: '12px'}}>
                 {
                 shopCart.map((item) => {
