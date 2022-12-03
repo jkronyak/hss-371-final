@@ -22,14 +22,14 @@ const Shop = () => {
 
 	const handleAddToCartClick = (item) => { 
         console.log("Add to Cart Clicked");
-        dispatch(actions.addInteraction({type: 'CLICK', target: 'ADD_ITEM_TO_CART', timestamp: Date.now(), item: item.id}));
+        dispatch(actions.addInteraction({type: 'CLICK', target: 'ADD_ITEM_TO_CART', timestamp: Date.now(), item: item.name}));
         dispatch(actions.addItemToCart(item));
     }
 
-    const handleRemoveFromCartClick = (itemId) => {
+    const handleRemoveFromCartClick = (item) => {
         console.log("Remove from Cart Clicked");
-        dispatch(actions.addInteraction({type: 'CLICK', target: 'REMOVE_ITEM_FROM_CART', timestamp: Date.now(), item: itemId}));
-        dispatch(actions.removeItemFromCart(itemId));
+        dispatch(actions.addInteraction({type: 'CLICK', target: 'REMOVE_ITEM_FROM_CART', timestamp: Date.now(), item: item.name}));
+        dispatch(actions.removeItemFromCart(item.id));
 	}
 
 	const handleMouseEnter = (e) => { 
@@ -39,7 +39,8 @@ const Shop = () => {
 
 	const handleMouseLeave = (e, target) => { 
 		console.log("Mouse Leave");
-		dispatch(actions.addInteraction({type: 'HOVER', target: target , timestamp: Date.now(), duration: (Date.now() - mouseHoverTime)}));
+		if((Date.now() - mouseHoverTime) > 500)
+			dispatch(actions.addInteraction({type: 'HOVER', target: target , timestamp: Date.now(), duration: (Date.now() - mouseHoverTime)}));
 	}
 
 

@@ -23,13 +23,13 @@ const ShopItemPage = () => {
 
     const handleAddToCartClick = () => { 
         console.log("Add to Cart Clicked");
-		dispatch(actions.addInteraction({type: 'CLICK', target: "ADD_TO_CART_BUTTON", timestamp: Date.now(), item: itemData.id}));
+		dispatch(actions.addInteraction({type: 'CLICK', target: "ADD_TO_CART_BUTTON", timestamp: Date.now(), item: itemData.name}));
         dispatch(actions.addItemToCart(itemData));
     }
 
     const handleRemoveFromCartClick = () => {
         console.log("Remove from Cart Clicked");
-		dispatch(actions.addInteraction({type: 'CLICK', target: "REMOVE_FROM_CART_BUTTON", timestamp: Date.now(), item: itemData.id}));
+		dispatch(actions.addInteraction({type: 'CLICK', target: "REMOVE_FROM_CART_BUTTON", timestamp: Date.now(), item: itemData.name}));
         dispatch(actions.removeItemFromCart(id));
     }
 
@@ -41,7 +41,8 @@ const ShopItemPage = () => {
 
 	const handleMouseLeave = (e, target) => { 
 		console.log("Mouse Leave");
-		dispatch(actions.addInteraction({type: 'HOVER', target: target , timestamp: Date.now(), item: itemData.name, duration: (Date.now() - mouseHoverTime)}));
+		if((Date.now() - mouseHoverTime) > 500)
+			dispatch(actions.addInteraction({type: 'HOVER', target: target , timestamp: Date.now(), item: itemData.name, duration: (Date.now() - mouseHoverTime)}));
 	}
 
 	const handleClick = (e, target) => { 
@@ -51,9 +52,9 @@ const ShopItemPage = () => {
 
 
 	useEffect(() => {
-		dispatch(actions.addInteraction({type: 'PAGE_VISIT', target: 'SHOP_ITEM_PAGE', timestamp: Date.now()}));
+		dispatch(actions.addInteraction({type: 'PAGE_VISIT', target: 'SHOP_ITEM_PAGE', timestamp: Date.now(), item: itemData.name}));
 
-	}, [dispatch]);
+	}, [dispatch, itemData.name]);
 
     return(
         <Box className='store-item-page-box' sx={{maxWidth: '40%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '32px',padding: '16px'}}>

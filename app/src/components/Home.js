@@ -9,7 +9,7 @@ const Home = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-		dispatch(actions.addInteraction({type: 'PAGE_VISIT', page: 'Home', timestamp: Date.now()}));
+		dispatch(actions.addInteraction({type: 'PAGE_VISIT', target: 'HOME', timestamp: Date.now()}));
 
 	}, [dispatch]);
 

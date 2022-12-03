@@ -26,7 +26,7 @@ const Cart = () => {
 	
 
     useEffect(() => {
-		dispatch(actions.addInteraction({type: 'PAGE_VISIT', target: 'Cart', timestamp: Date.now()}));
+		dispatch(actions.addInteraction({type: 'PAGE_VISIT', target: 'CART', timestamp: Date.now()}));
 
 	}, [dispatch]);
 

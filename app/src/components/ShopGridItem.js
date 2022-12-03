@@ -30,9 +30,15 @@ const ShopGridItem = (props) => {
 
 	const handleMouseLeave = (e, target) => { 
 		console.log("Mouse Leave");
-		dispatch(actions.addInteraction({type: 'HOVER', target: target, timestamp: Date.now(), duration: (Date.now() - mouseHoverTime), item: props.item.name}));
+		if((Date.now() - mouseHoverTime) > 500)
+			dispatch(actions.addInteraction({type: 'HOVER', target: target, timestamp: Date.now(), duration: (Date.now() - mouseHoverTime), item: props.item.name}));
 	}
 	
+	const handleClick = (e, target) => { 
+		console.log("Click");
+		dispatch(actions.addInteraction({type: 'CLICK', target: target , timestamp: Date.now(), item: props.item.name}));
+	};
+
     return(
         <Grid
             item 
@@ -47,9 +53,13 @@ const ShopGridItem = (props) => {
 				boxShadow: '2px 2px 10px;'
             }}
         >  
-            <img className="store-item-img" src={props.item.imageUrl}></img>
+            <img className="store-item-img" src={props.item.imageUrl}
+				onClick={ (e) => { handleClick(e, "STORE_ITEM_IMAGE")}}
+				onMouseEnter={(e) => handleMouseEnter(e)}
+				onMouseLeave={(e) => handleMouseLeave(e, `STORE_ITEM_IMAGE`)}
+			></img>
             <Typography>{props.item.name}</Typography>
-            <p>{props.item.price}</p>
+            <Typography>{props.item.price}</Typography>
             <Link to={`/shop/${props.item.id}`}>
                 <Button variant="contained" 
 				onClick={() => onViewButtonPressed()}
@@ -60,7 +70,7 @@ const ShopGridItem = (props) => {
 			{
 				props.shoppingCart.some((curCartItem) => { return curCartItem.id === props.item.id })
 				? <Button sx={{m: 2}} variant="contained" 
-					onClick={() => props.handleRemoveFromCartClick(props.item.id)} 
+					onClick={() => props.handleRemoveFromCartClick(props.item)} 
 					onMouseEnter={(e) => handleMouseEnter(e)}
 					onMouseLeave={(e) => handleMouseLeave(e, "REMOVE_FROM_CART_BUTTON")}
 					>Remove From Cart</Button>

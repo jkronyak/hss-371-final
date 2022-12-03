@@ -11,7 +11,7 @@ const InteractionResult = ({interaction}) => {
 				)
 			case 'HOVER':
 				return (
-					<p>Hovered over {interaction.target} for {interaction.item} at {timestamp} for {interaction.duration/1000} seconds</p>
+					<p>Hovered over {interaction.target} for {interaction.item} at {timestamp} for {interaction.duration / 1000} seconds</p>
 				)
 			case 'CLICK':
 				return (
