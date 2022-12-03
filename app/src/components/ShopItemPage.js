@@ -29,6 +29,11 @@ const ShopItemPage = () => {
         dispatch(actions.removeItemFromCart(id));
     }
 
+	useEffect(() => {
+		dispatch(actions.addInteraction({type: 'PAGE_VISIT', page: 'Shop', timestamp: Date.now()}));
+
+	}, [dispatch]);
+
     return(
         <Box className='store-item-page-box' sx={{maxWidth: '40%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '32px',padding: '16px'}}>
 			<Typography variant='h2'>{itemData.name}</Typography>

@@ -19,7 +19,7 @@ const ShopGridItem = (props) => {
 
     const onViewButtonPressed = () => { 
         console.log("View Button Pressed");
-        dispatch(actions.addInteraction({type: "SHOP_ITEM_BUTTON_PRESS", timestamp: Date.now(), item: props.item.id}));
+        dispatch(actions.addInteraction({type: "SHOP_VIEW_BUTTON_PRESS", timestamp: Date.now(), item: props.item.id}));
     };
 
     return(

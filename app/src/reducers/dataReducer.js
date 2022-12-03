@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid';
 
 const initialState = { 
     shopItems: [
@@ -37,7 +38,7 @@ const dataReducer = (state = initialState, action) => {
     switch(type) { 
         case 'ADD_INTERACTION':
             copyState = { ...state };
-            copyState.userData.interactions.push(payload);
+            copyState.userData.interactions.push({...payload, id: uuid()});
             return copyState;
         case 'ADD_ITEM_TO_CART':
             copyState = { ...state };

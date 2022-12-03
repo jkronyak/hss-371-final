@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { List } from '@mui/material';
 import ShopGridItem from './ShopGridItem'
@@ -20,6 +20,11 @@ const Cart = () => {
         console.log("Remove from Cart Clicked");
         dispatch(actions.removeItemFromCart(itemId));
 	}
+
+    useEffect(() => {
+		dispatch(actions.addInteraction({type: 'PAGE_VISIT', page: 'Cart', timestamp: Date.now()}));
+
+	}, [dispatch]);
 
     return(
         <div>

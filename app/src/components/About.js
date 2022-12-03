@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import actions from '../actions';
 
 const About = () => { 
+    const dispatch = useDispatch();
+    useEffect(() => {
+		dispatch(actions.addInteraction({type: 'PAGE_VISIT', page: 'About', timestamp: Date.now()}));
+
+	}, [dispatch]);
 
     return(
         <div>
