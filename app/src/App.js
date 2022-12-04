@@ -8,6 +8,7 @@ import Results from './components/Results';
 import ShopItemPage from './components/ShopItemPage';
 import NavigationHeader from './components/NavigationHeader';
 import Cart from './components/Cart';
+import FourZeroFour from './components/FourZeroFour';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
           <Route path='/shop/:id' element={<ShopItemPage/>}></Route>
           <Route path='/results' element={<Results/>}></Route>
           <Route path='/cart' element={<Cart/>}></Route>
+		      <Route path="/*" element={<FourZeroFour/>}></Route>
         </Routes>
       </Router>
     </div>

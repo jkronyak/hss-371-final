@@ -100,7 +100,7 @@ const Home = () => {
                         </ListItemIcon>
                         <ListItemText primary="Browser 'Fingerprints'" className='mainlist'/>
                     </ListItem>
-                    <ListItem inset sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
                         <ul className='sublist'>
                             <li>This is a collection of data points that are used to create a unique identifier for you</li>
                             <li>You can see what your own fingerprint is <a href='https://coveryourtracks.eff.org/' target='_blank' rel='noreferrer'>here</a></li>
@@ -130,7 +130,7 @@ const Home = () => {
 						</ListItemIcon>
 						<ListItemText primary='Hackers can create a digital profile of you' className='mainlist'/>
 					</ListItem>
-                    <ListItem inset sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
                         <ul className='sublist2'>
                             <li>Hackers can also infiltrate websites and use their access to track you and gain access to your usernames and passwords (!) if the timing is right</li>
                         </ul>
@@ -147,7 +147,7 @@ const Home = () => {
 						</ListItemIcon>
 						<ListItemText primary='Capturing sensitive information' className='mainlist'/>
 					</ListItem>
-                    <ListItem inset sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
                         <ul className='sublist2'>
                             <li>Third party cookies can track you across sites and capture your login information, even if they aren't using it maliciously</li>
                         </ul>
@@ -155,7 +155,7 @@ const Home = () => {
 				</List>
 			</div>
             <Divider variant='middle' sx={{m: 2, maxWidth: '80%', marginLeft: 'auto', marginRight: 'auto'}}>
-                <Chip label='What To Do About it' sx={{fontWeight: 700, fontSize: '22px'}}/>
+                <Chip label='What You Can Do About it' sx={{fontWeight: 700, fontSize: '22px'}}/>
             </Divider>
             <div className='container'>
                 <List subheader={
@@ -175,7 +175,7 @@ const Home = () => {
                         </ListItemIcon>
                         <ListItemText primary='Avoid Phishing and other malicious links or sites' className='mainlist'/>
                     </ListItem>
-                    <ListItem inset sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
                         <ul className='sublist2'>
                             <li>Never click on a link from a suspicious source</li>
                             <li>Go directly to websites, similar to how you would call a number back if you believe there is something suspicious about the call</li>
@@ -187,7 +187,7 @@ const Home = () => {
                         </ListItemIcon>
                         <ListItemText primary='Avoid unnecessarily giving out personal information and other private data' className='mainlist'/>
                     </ListItem>
-                    <ListItem inset sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
                         <ul className='sublist2'>
                             <li>Only give out data like financial information, your social security number and even your email address when absolutely necessary</li>
                         </ul>
@@ -204,7 +204,7 @@ const Home = () => {
                         </ListItemIcon>
                         <ListItemText primary='Do not interact with pop-ups on websites' className='mainlist'/>
                     </ListItem>
-                    <ListItem inset sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
                         <ul className='sublist2'>
                             <li>They may seem legitimate, but they are some of the easiest ways for hackers to infiltrate your machine and get your information</li>
                         </ul>
@@ -215,7 +215,7 @@ const Home = () => {
                         </ListItemIcon>
                         <ListItemText primary='Only download from secure sites that you trust' className='mainlist'/>
                     </ListItem>
-                    <ListItem inset sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
                         <ul className='sublist2'>
                             <li>Many downloads from sites can have malware hidden in them, compromising your machine as soon as you click download</li>
                         </ul>
@@ -226,7 +226,7 @@ const Home = () => {
                         </ListItemIcon>
                         <ListItemText primary='Use services like password managers to increase your security' className='mainlist'/>
                     </ListItem>
-                    <ListItem inset sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
                         <ul className='sublist2'>
                             <li>Password managers store encryptions of your passwords, so they never keep your plaintext passwords stored on a server</li>
                         </ul>
@@ -241,18 +241,33 @@ const Home = () => {
                     <br></br>
                     <li>
                         Crawford, E. (2021, October 10). Website tracking: Why and how do websites track you? CookiePro. 
-                        Retrieved December 4, 2022, from https://www.cookiepro.com/blog/website-tracking/ 
+                        From https://www.cookiepro.com/blog/website-tracking/ 
                     </li>
                     <br></br>
+					<li>
+						Hood, J. (2020, October 12). Jacquard Loom. Age of Revolution. 
+						From https://ageofrevolution.org/200-object/jacquard-loom/ 
+					</li>
+					<br></br>
                     <li>
                         Kishore, A. (2019, August 31). What type of data do websites collect about you? Online Tech Tips. 
-                        Retrieved December 4, 2022, from https://www.online-tech-tips.com/computer-tips/what-type-of-data-do-websites-collect-about-you-2/ 
+                        From https://www.online-tech-tips.com/computer-tips/what-type-of-data-do-websites-collect-about-you-2/ 
                     </li>
                     <br></br>
+					<li>
+						Latson, J. (2015, April 27). Computer mouse history: How the helpful tech innovation came to be. Time.
+						From https://time.com/3831359/computer-mouse-history/ 
+					</li>
+					<br></br>
                     <li>
                         Security, P. (2019, May 13). Top 10 tips for safer, more secure web browsing - panda security. Panda Security Mediacenter. 
-                        Retrieved December 4, 2022, from https://www.pandasecurity.com/en/mediacenter/mobile-news/tips-browsing-safer/ 
+                        From https://www.pandasecurity.com/en/mediacenter/mobile-news/tips-browsing-safer/ 
                     </li>
+					<br></br>
+					<li>
+						Video Game Console Library. (n.d.). Odyssey Magnavox. Video Game Console Library. 
+						From https://www.videogameconsolelibrary.com/pg70-odyssey.htm#page=reviews 
+					</li>
                 </ul>
             </div>
         </div>

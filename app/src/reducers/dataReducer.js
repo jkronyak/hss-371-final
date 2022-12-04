@@ -1,8 +1,9 @@
 import { v4 as uuid } from 'uuid';
 
+
 const initialState = { 
     shopItems: [
-        { id: 1, name: 'Laplop', price: 999.99, imageUrl: "https://i.imgur.com/o26wJAR.png", description: "An excellent laptop!" },
+        { id: 1, name: 'Laptop', price: 999.99, imageUrl: "https://i.imgur.com/o26wJAR.png", description: "An excellent laptop!" },
         { id: 2, name: 'Mobile Phone', price: 499.99, imageUrl: "https://i.imgur.com/wWVoCQU.png", description: 
             "This phone has everything you will ever need! Not only is it blazing fast and state of the art, it also has "+
             "a multitude of cameras, so you can take a bunch of pictures! This might not be everyone's favorite phone, but it could be yours! " },
@@ -27,8 +28,12 @@ const initialState = {
 			an early personal computer. Nowadways the mouse is a priceless relic." },
 		{ id: 8, name: 'Antique: Jacquard Loom', price: 109999.99, imageUrl: "https://i.imgur.com/MKfohwj.jpeg", description: "The Jacquard loom is a device for weaving \
 			patterns into textiles. It was invented by Joseph Marie Jacquard in 1804. The loom was a major step forward in the mechanization of textile production. \
-			Jacquard's invention was programmable via a punch card system - the same system that early computer technology would use." }
-
+			Jacquard's invention was programmable via a punch card system - the same system that early computer technology would use." },
+		{id: 9, name: "Antique: IBM 1311 Disk Storage Drive", price: 8999.99, imageUrl: "https://i.imgur.com/ik3N40H.png", description: "The 1311 Disk Storage Drive was \
+			the first disk drive to be made with a removable disk pack. It was announced in 1962 by IBM and became milestone in computer storage systems." },
+		{id: 10, name: "Antique: Magnavox Odyssey", price: 1499.99, imageUrl: "https://i.imgur.com/0gi4bt0.png", description: "The Magnavox Odyssey was the world's first \
+			home video game console. Released in 1972, the Odyssey included several new games including the amazing Simon Says! \
+		"}
     ],
     userData: { 
         interactions: [ ],

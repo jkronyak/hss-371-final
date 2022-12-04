@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 import actions from '../actions';
@@ -16,6 +16,7 @@ import { v4 as uuid } from 'uuid';
 const ShopItemPage = () => {
     const { id } = useParams();
     
+	const nav = useNavigate();
     const allData = useSelector((state) => state.data);
     const itemData = allData.shopItems.find((item) => Number(item.id) === Number(id));
     const shoppingCart = allData.shoppingCart;
@@ -50,7 +51,8 @@ const ShopItemPage = () => {
 
 	const handleMouseUp = (e, target) => {
 		console.log("Mouse Up");
-		dispatch(actions.addInteraction({type: 'MOUSE_UP', target: target , timestamp: Date.now(), item: itemData.name, selection: window.getSelection().toString()}));
+		if(window.getSelection().toString() !== "")
+			dispatch(actions.addInteraction({type: 'MOUSE_UP', target: target , timestamp: Date.now(), item: itemData.name, selection: window.getSelection().toString()}));
 	};
 
 	const handleClick = (e, target) => { 
@@ -61,19 +63,26 @@ const ShopItemPage = () => {
 
 	const handleDoubleClick = (e, target) => {
 		console.log("Double Click");
-		dispatch(actions.addInteraction({type: 'DOUBLE_CLICK', target: target , timestamp: Date.now(), item: itemData.name, selection: window.getSelection().toString()}));
+		if(window.getSelection().toString() !== "")
+			dispatch(actions.addInteraction({type: 'DOUBLE_CLICK', target: target , timestamp: Date.now(), item: itemData.name, selection: window.getSelection().toString()}));
 	};
 
-
 	useEffect(() => {
-		const visitId = uuid();
+		const  validateShopId = () => {
+			if(id > allData.shopItems.length || id < 1) {
+				nav(-1);
+			}
+		}
+		validateShopId();
 
+		const visitId = uuid();
 		dispatch(actions.addInteraction({id: visitId, type: 'PAGE_VISIT', target: 'SHOP_ITEM_PAGE', timestamp: Date.now(), item: itemData.name}));
 		return () => { 
 			dispatch(actions.editInteractionDuration({id: visitId, timestamp: Date.now()}));
 		}
-	}, [dispatch, itemData.name]);
+	}, [dispatch, itemData, id]);
 
+	if(itemData && Object.keys(itemData).length > 0)
     return(
         <Box className='store-item-page-box' sx={{maxWidth: '40%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '32px',padding: '16px'}}>
 			<Typography variant='h2'
@@ -111,6 +120,7 @@ const ShopItemPage = () => {
 			}
         </Box>
     )
+	else return <p>Please wait...</p>
 };
 
 export default ShopItemPage;

@@ -51,6 +51,7 @@
   max-height: 480px;
   width: 67%;
   height: 67%;
+  border-radius: 10px;
 }
 
 div.container {

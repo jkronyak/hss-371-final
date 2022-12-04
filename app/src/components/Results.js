@@ -128,7 +128,7 @@ const Results = () => {
 
 	// Interaction Type, Target, Timestamp, Item
 	const columns = [
-		{ field: 'type', headerName: 'Interaction Type', width: 175 },
+		{ field: 'type', headerName: 'Interaction Type', width: 150 },
 		{ field: 'target', headerName: 'Target', width: 250 },
 		{ field: 'timestamp', headerName: 'Timestamp', width: 200 },
 		{ field: 'item', headerName: 'Item (If Any)', width: 175 },
@@ -222,7 +222,7 @@ const Results = () => {
 							</DialogActions>
 
 						</Dialog>
-						{ rows && columns ? <DataGrid rows={rows} columns={columns} pageSize={10} rowsPerPageOptions={[10, 25, 50]} autoHeight rowHeight={100}/> : null }
+						{ rows && columns ? <DataGrid rows={rows} columns={columns} rowsPerPageOptions={[10, 25, 50]} autoHeight rowHeight={100}/> : null }
 					</Box>	
 				</div>
 				: null
