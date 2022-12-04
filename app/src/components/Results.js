@@ -43,8 +43,6 @@ const Results = () => {
 		setDialogSelection(rowParams.row.selection)
 	};
 
-
-
 	useEffect ( () => {
 		const getData = async() => {
 			try {
@@ -196,7 +194,7 @@ const Results = () => {
 							<ListItemIcon className='mainlist'>
 								<Cookie/>
 							</ListItemIcon>
-							<ListItemText primary={`Your Browser is: ${operSys()}`} className='mainlist'/>
+							<ListItemText primary={`Your Operating System is: ${operSys()}`} className='mainlist'/>
 						</ListItem>
 					</List>
 					

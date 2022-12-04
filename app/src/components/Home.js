@@ -31,7 +31,7 @@ const Home = () => {
     return(
         <div className='home-div'>
             <Divider variant='middle' sx={{m: 2, maxWidth: '80%', marginLeft: 'auto', marginRight: 'auto'}}>
-                <Chip label='About Us' sx={{fontWeight: 700, fontSize: '22px'}}/>
+                <Chip label='About' sx={{fontWeight: 700, fontSize: '22px'}}/>
             </Divider>
             <Typography sx={{maxWidth: '65%', marginLeft: 'auto', marginRight: 'auto'}}>
                 Our names are Jared Kronyak and Erik Anhorn, and we are seniors here at Stevens. 
@@ -39,6 +39,16 @@ const Home = () => {
             <Typography sx={{maxWidth: '65%', marginLeft: 'auto', marginRight: 'auto'}}>
                 We are both Computer Science majors and security is very important to the both of us, which is why we 
                 chose this topic for our final project. 
+            </Typography>
+			<Typography sx={{maxWidth: '65%', marginLeft: 'auto', marginRight: 'auto'}}>
+				<br></br>
+				The purpose of this website is to demonstrate just how much data websites can collect about their users.
+				It includes a simple storefront for you interact with. Simply visit the Shop page, navigate around, and add some items to your cart.
+				Once you are done, visit the Results page, or hit checkout on the Cart page.
+				<br></br>
+				<br></br>
+				On the Results page, you will see any metadata we were able to collect about you.
+				This page also shows you any of the interactions you had with the website, how long you spent on each, etc. 
             </Typography>
             <Divider variant='middle' sx={{m: 2, maxWidth: '80%', marginLeft: 'auto', marginRight: 'auto'}}>
                 <Chip label='Web Security Findings' sx={{fontWeight: 700, fontSize: '22px'}}/>
