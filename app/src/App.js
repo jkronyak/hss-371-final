@@ -19,7 +19,7 @@ function App() {
         <header>
           <NavigationHeader/>
         </header>
-		<h1>HSS 371 Final Project</h1>
+		<h1>Top Notch Tech</h1>
         <Routes>
           {/* 
             This is where we define our Routes. 

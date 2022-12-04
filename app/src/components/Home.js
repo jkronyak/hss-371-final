@@ -1,7 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { List, Chip, Divider, ListSubheader, ListItem, ListItemText, ListItemIcon } from '@mui/material';
+import { 
+    List, 
+    Chip, 
+    Divider, 
+    ListSubheader, ListItem, ListItemText, ListItemIcon, 
+    Typography 
+} from '@mui/material';
 import Cookie from '@mui/icons-material/Cookie';
+import PrivacyTip from '@mui/icons-material/PrivacyTip';
+import Lock from '@mui/icons-material/Lock';
 import actions from '../actions';
 
 
@@ -22,17 +30,20 @@ const Home = () => {
 
     return(
         <div className='home-div'>
-            <Divider variant='middle'>
+            <Divider variant='middle' sx={{m: 2, maxWidth: '80%', marginLeft: 'auto', marginRight: 'auto'}}>
                 <Chip label='About Us' sx={{fontWeight: 700, fontSize: '22px'}}/>
             </Divider>
-            <p>Our names are Jared Kronyak and Erik Anhorn, and we are seniors here at Stevens. </p>
-            <p>We are both Computer Science majors and security is very important to the both of us, which is why we 
+            <Typography sx={{maxWidth: '65%', marginLeft: 'auto', marginRight: 'auto'}}>
+                Our names are Jared Kronyak and Erik Anhorn, and we are seniors here at Stevens. 
+            </Typography>
+            <Typography sx={{maxWidth: '65%', marginLeft: 'auto', marginRight: 'auto'}}>
+                We are both Computer Science majors and security is very important to the both of us, which is why we 
                 chose this topic for our final project. 
-            </p>
-            <Divider variant='middle'>
+            </Typography>
+            <Divider variant='middle' sx={{m: 2, maxWidth: '80%', marginLeft: 'auto', marginRight: 'auto'}}>
                 <Chip label='Web Security Findings' sx={{fontWeight: 700, fontSize: '22px'}}/>
             </Divider>
-            <p>
+            <p className='subheader'>
                 Below are the findings of a few quick searches on what risks exist on the Internet
             </p>
 			<div className='container'>
@@ -103,28 +114,148 @@ const Home = () => {
 				>
 					<ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
 						<ListItemIcon className='mainlist'>
-							<Cookie/>
+							<PrivacyTip/>
 						</ListItemIcon>
-						<ListItemText primary='Your Public IP Address' className='mainlist'/>
-					</ListItem >
+						<ListItemText primary='Targeted Advertising' className='mainlist'/>
+					</ListItem>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+						<ListItemIcon className='mainlist'>
+							<PrivacyTip/>
+						</ListItemIcon>
+						<ListItemText primary='Research' className='mainlist'/>
+					</ListItem>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+						<ListItemIcon className='mainlist'>
+							<PrivacyTip/>
+						</ListItemIcon>
+						<ListItemText primary='Hackers can create a digital profile of you' className='mainlist'/>
+					</ListItem>
+                    <ListItem inset sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
+                        <ul className='sublist2'>
+                            <li>Hackers can also infiltrate websites and use their access to track you and gain access to your usernames and passwords (!) if the timing is right</li>
+                        </ul>
+                    </ListItem>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+						<ListItemIcon className='mainlist'>
+							<PrivacyTip/>
+						</ListItemIcon>
+						<ListItemText primary='Predict Future habits and actions' className='mainlist'/>
+					</ListItem>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+						<ListItemIcon className='mainlist'>
+							<PrivacyTip/>
+						</ListItemIcon>
+						<ListItemText primary='Capturing sensitive information' className='mainlist'/>
+					</ListItem>
+                    <ListItem inset sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
+                        <ul className='sublist2'>
+                            <li>Third party cookies can track you across sites and capture your login information, even if they aren't using it maliciously</li>
+                        </ul>
+                    </ListItem>
 				</List>
 			</div>
+            <Divider variant='middle' sx={{m: 2, maxWidth: '80%', marginLeft: 'auto', marginRight: 'auto'}}>
+                <Chip label='What To Do About it' sx={{fontWeight: 700, fontSize: '22px'}}/>
+            </Divider>
+            <div className='container'>
+                <List subheader={
+                    <ListSubheader component='h4'>
+                        <Chip label='Here are some ways to increase your security online' sx={{fontWeight: 600, fontSize: '16px', color: 'grey'}}/>
+                    </ListSubheader>}
+                >
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+                        <ListItemIcon className='mainlist'>
+                            <Lock/>
+                        </ListItemIcon>
+                        <ListItemText primary='Disable third-party cookies when possible' className='mainlist'/>
+                    </ListItem>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+                        <ListItemIcon className='mainlist'>
+                            <Lock/>
+                        </ListItemIcon>
+                        <ListItemText primary='Avoid Phishing and other malicious links or sites' className='mainlist'/>
+                    </ListItem>
+                    <ListItem inset sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
+                        <ul className='sublist2'>
+                            <li>Never click on a link from a suspicious source</li>
+                            <li>Go directly to websites, similar to how you would call a number back if you believe there is something suspicious about the call</li>
+                        </ul>
+                    </ListItem>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+                        <ListItemIcon className='mainlist'>
+                            <Lock/>
+                        </ListItemIcon>
+                        <ListItemText primary='Avoid unnecessarily giving out personal information and other private data' className='mainlist'/>
+                    </ListItem>
+                    <ListItem inset sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
+                        <ul className='sublist2'>
+                            <li>Only give out data like financial information, your social security number and even your email address when absolutely necessary</li>
+                        </ul>
+                    </ListItem>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+                        <ListItemIcon className='mainlist'>
+                            <Lock/>
+                        </ListItemIcon>
+                        <ListItemText primary='Use browsers like DuckDuckGo that block cookies by default' className='mainlist'/>
+                    </ListItem>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+                        <ListItemIcon className='mainlist'>
+                            <Lock/>
+                        </ListItemIcon>
+                        <ListItemText primary='Do not interact with pop-ups on websites' className='mainlist'/>
+                    </ListItem>
+                    <ListItem inset sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
+                        <ul className='sublist2'>
+                            <li>They may seem legitimate, but they are some of the easiest ways for hackers to infiltrate your machine and get your information</li>
+                        </ul>
+                    </ListItem>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+                        <ListItemIcon className='mainlist'>
+                            <Lock/>
+                        </ListItemIcon>
+                        <ListItemText primary='Only download from secure sites that you trust' className='mainlist'/>
+                    </ListItem>
+                    <ListItem inset sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
+                        <ul className='sublist2'>
+                            <li>Many downloads from sites can have malware hidden in them, compromising your machine as soon as you click download</li>
+                        </ul>
+                    </ListItem>
+                    <ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+                        <ListItemIcon className='mainlist'>
+                            <Lock/>
+                        </ListItemIcon>
+                        <ListItemText primary='Use services like password managers to increase your security' className='mainlist'/>
+                    </ListItem>
+                    <ListItem inset sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 10, color: 'grey'}}>
+                        <ul className='sublist2'>
+                            <li>Password managers store encryptions of your passwords, so they never keep your plaintext passwords stored on a server</li>
+                        </ul>
+                    </ListItem>
+                </List>
+            </div>
+            <Divider variant='middle' sx={{m: 2, maxWidth: '80%', marginLeft: 'auto', marginRight: 'auto'}}>
+                <Chip label='Works Cited' sx={{fontWeight: 700, fontSize: '22px'}}/>
+            </Divider>
+            <div className='container'>
+                <ul className='sublist'>
+                    <br></br>
+                    <li>
+                        Crawford, E. (2021, October 10). Website tracking: Why and how do websites track you? CookiePro. 
+                        Retrieved December 4, 2022, from https://www.cookiepro.com/blog/website-tracking/ 
+                    </li>
+                    <br></br>
+                    <li>
+                        Kishore, A. (2019, August 31). What type of data do websites collect about you? Online Tech Tips. 
+                        Retrieved December 4, 2022, from https://www.online-tech-tips.com/computer-tips/what-type-of-data-do-websites-collect-about-you-2/ 
+                    </li>
+                    <br></br>
+                    <li>
+                        Security, P. (2019, May 13). Top 10 tips for safer, more secure web browsing - panda security. Panda Security Mediacenter. 
+                        Retrieved December 4, 2022, from https://www.pandasecurity.com/en/mediacenter/mobile-news/tips-browsing-safer/ 
+                    </li>
+                </ul>
+            </div>
         </div>
     )
 }
-
-        //     <h2>Web Security Findings</h2>
-        //     <p>Below are the findings of some quick searches on what risks exist on the Internet</p>
-        //     <h4>What websites can collect about you</h4>
-        //     <h4>What this data can be used for</h4>
-        //     <ol>
-        //         <li>Targeted Advertising</li>
-        //         <li>Research</li>
-        //         <li>Hackers can create a digital profile of you</li>
-        //         <ul className='sublist'>
-        //             <li>Hackers can also infiltrate websites and use their access to track you and gain access to your usernames and passwords (!) if the timing is right</li>
-        //         </ul>
-        //     </ol>
-        //     <p>We have put our paper on how we created the project below, we hope you found this website useful and informative!</p>
-        // </div>
 export default Home;

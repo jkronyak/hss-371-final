@@ -39,6 +39,19 @@ const ShopGridItem = (props) => {
 		dispatch(actions.addInteraction({type: 'CLICK', target: target , timestamp: Date.now(), item: props.item.name}));
 	};
 
+	const handleMouseUp = (e, target) => {
+		console.log("Mouse Up");
+		if(window.getSelection().toString() !== "")
+			dispatch(actions.addInteraction({type: 'MOUSE_UP', target: target , timestamp: Date.now(), item: props.item.name, selection: window.getSelection().toString()}));
+	};
+
+	const handleDoubleClick = (e, target) => {
+		console.log("Double Click");
+		if(window.getSelection().toString() !== "")
+			dispatch(actions.addInteraction({type: 'DOUBLE_CLICK', target: target , timestamp: Date.now(), item: props.item.name, selection: window.getSelection().toString()}));
+	};
+
+
     return(
         <Grid
             item 
@@ -58,8 +71,14 @@ const ShopGridItem = (props) => {
 				onMouseEnter={(e) => handleMouseEnter(e)}
 				onMouseLeave={(e) => handleMouseLeave(e, `STORE_ITEM_IMAGE`)}
 			></img>
-            <Typography>{props.item.name}</Typography>
-            <Typography>${props.item.price}</Typography>
+            <Typography
+				onMouseUp={(e) => handleMouseUp(e, `STORE_ITEM_NAME`)}
+				// onDoubleClick={(e) => handleDoubleClick(e, `STORE_ITEM_NAME`)}
+			>{props.item.name}</Typography>
+            <Typography
+				onMouseUp={(e) => handleMouseUp(e, `STORE_ITEM_PRICE`)}
+				// onDoubleClick={(e) => handleDoubleClick(e, `STORE_ITEM_PRICE`)}
+			>${props.item.price.toLocaleString()}</Typography>
             <Link to={`/shop/${props.item.id}`}>
                 <Button variant="contained" 
 				onClick={() => onViewButtonPressed()}

@@ -48,9 +48,20 @@ const ShopItemPage = () => {
 			dispatch(actions.addInteraction({type: 'HOVER', target: target , timestamp: Date.now(), item: itemData.name, duration: (Date.now() - mouseHoverTime)}));
 	}
 
+	const handleMouseUp = (e, target) => {
+		console.log("Mouse Up");
+		dispatch(actions.addInteraction({type: 'MOUSE_UP', target: target , timestamp: Date.now(), item: itemData.name, selection: window.getSelection().toString()}));
+	};
+
 	const handleClick = (e, target) => { 
 		console.log("Click");
 		dispatch(actions.addInteraction({type: 'CLICK', target: target , timestamp: Date.now(), item: itemData.name}));
+	};
+
+
+	const handleDoubleClick = (e, target) => {
+		console.log("Double Click");
+		dispatch(actions.addInteraction({type: 'DOUBLE_CLICK', target: target , timestamp: Date.now(), item: itemData.name, selection: window.getSelection().toString()}));
 	};
 
 
@@ -65,15 +76,24 @@ const ShopItemPage = () => {
 
     return(
         <Box className='store-item-page-box' sx={{maxWidth: '40%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '32px',padding: '16px'}}>
-			<Typography variant='h2'>{itemData.name}</Typography>
+			<Typography variant='h2'
+				onMouseUp={(e) => handleMouseUp(e, `STORE_ITEM_NAME`)}
+				onDoubleClick={(e) => handleDoubleClick(e, `STORE_ITEM_NAME`)}
+			>{itemData.name}</Typography>
 
             <img className="store-page-img" src={itemData.imageUrl} alt={itemData.name} 
 				onClick={ (e) => { handleClick(e, "STORE_ITEM_IMAGE")}}
 				onMouseEnter={(e) => handleMouseEnter(e)}
 				onMouseLeave={(e) => handleMouseLeave(e, `STORE_ITEM_IMAGE`)}
 				/>
-			<Typography>{itemData.description}</Typography>
-            <Typography>Price: ${itemData.price}</Typography>
+			<Typography
+				onMouseUp={(e) => handleMouseUp(e, `STORE_ITEM_DESC`)}
+				onDoubleClick={(e) => handleDoubleClick(e, `STORE_ITEM_DESC`)}
+			>{itemData.description}</Typography>
+            <Typography
+				onMouseUp={(e) => handleMouseUp(e, `STORE_ITEM_PRICE`)}
+				onDoubleClick={(e) => handleDoubleClick(e, `STORE_ITEM_PRICE`)}
+			>Price: ${itemData.price.toLocaleString()}</Typography>
 			{
 				shoppingCart.some((curCartItem) => { return curCartItem.id === itemData.id })
 				? <Button sx={{m: 2}} variant="contained" 

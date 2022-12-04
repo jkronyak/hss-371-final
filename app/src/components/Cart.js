@@ -64,35 +64,46 @@ const Cart = () => {
 
     return(
         <div>
-			<Link to={`/results`}>
-                <Button variant="contained" 
-				onClick={(e) => handleClick(e, 'CHECKOUT_BUTTON')}
-				onMouseEnter={(e) => handleMouseEnter(e)}
-				onMouseLeave={(e) => handleMouseLeave(e, "CHECKOUT_BUTTON")}
-				>Checkout</Button>
-            </Link>
             {
                 shopCart.length ?
-                <List sx={{maxWidth: '40%', marginLeft: 'auto', marginRight: 'auto', padding: '12px'}}>
-                    { 
-                        shopCart.map((item) => {
-                            return(
-                                <div key={item.id}>
-                                    <ShopGridItem item={item} key={item.id} shoppingCart={shopCart}
-                                        handleAddToCartClick={handleAddToCartClick}
-                                        handleRemoveFromCartClick={handleRemoveFromCartClick}
-                                    />
-                                </div>
-                            )
-                        })
-                    }
+                <div>
                     {
                         <div>
-                            <h2>Subtotal: ${calcTot(shopCart)}</h2>
+                            <h2>Subtotal: ${calcTot(shopCart).toLocaleString()}</h2>
                         </div>
                     }
-                </List>
-                :<p>Cart is empty</p>
+                    <Link to={`/results`}>
+                        <Button variant="contained" 
+                        onClick={(e) => handleClick(e, 'CHECKOUT_BUTTON')}
+                        onMouseEnter={(e) => handleMouseEnter(e)}
+                        onMouseLeave={(e) => handleMouseLeave(e, "CHECKOUT_BUTTON")}
+                        >Checkout</Button>
+                    </Link>
+                    <List sx={{maxWidth: '40%', marginLeft: 'auto', marginRight: 'auto', padding: '12px'}}>
+                        { 
+                            shopCart.map((item) => {
+                                return(
+                                    <div key={item.id}>
+                                        <ShopGridItem item={item} key={item.id} shoppingCart={shopCart}
+                                            handleAddToCartClick={handleAddToCartClick}
+                                            handleRemoveFromCartClick={handleRemoveFromCartClick}
+                                        />
+                                    </div>
+                                )
+                            })
+                        }
+                    </List>
+                </div>
+                :<div>
+                    <p>Cart is empty</p>
+                    <Link to={`/shop`}>
+                        <Button variant="contained" 
+                        onClick={(e) => handleClick(e, 'GO_TO_SHOP_BUTTON')}
+                        onMouseEnter={(e) => handleMouseEnter(e)}
+                        onMouseLeave={(e) => handleMouseLeave(e, "GO_TO_SHOP_BUTTON")}
+                        >Go To Shop</Button>
+                    </Link>
+                </div>
             }
         </div>
     )

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import actions from '../actions';
@@ -13,7 +13,8 @@ import {
 	Typography,
 	Chip,
 	Divider,
-	List, ListSubheader, ListItem, ListItemText, ListItemIcon
+	List, ListItem, ListItemText, ListItemIcon,
+	Dialog, DialogTitle, DialogContent, DialogActions,
 } from '@mui/material';
 
 import Cookie from '@mui/icons-material/Cookie';
@@ -32,6 +33,16 @@ const Results = () => {
 
 	const [data, setData] = useState({});
 	const [interactionsToggle, setInteractionsToggle] = useState(true);
+
+	const [dialogOpen, setDialogOpen] = useState(false);
+	const [dialogSelection, setDialogSelection] = useState("");
+
+	const handleSelectionClick = (e, rowParams) => {
+		console.log(rowParams)
+		setDialogOpen(!dialogOpen);
+		setDialogSelection(rowParams.row.selection)
+	};
+
 
 
 	useEffect ( () => {
@@ -90,6 +101,19 @@ const Results = () => {
 		// document.getElementById("OS").innerHTML = "The current operating system used in this machine is " + OperSysName;
 	}
 
+	const renderSelectionButton = (rowParams) => {
+		if(rowParams.row.type === "MOUSE_UP" || rowParams.row.type === "DOUBLE_CLICK") {
+
+			return (
+				<div>
+					<Button variant='contained' onClick={(e) => handleSelectionClick(e, rowParams)}>Selection</Button>
+				</div>
+			)
+		}
+		return null;
+}
+
+
 	const rows = interactions.map((interaction) => { 
 		return {
 			id: interaction.id,
@@ -98,6 +122,7 @@ const Results = () => {
 			timestamp: new Date(interaction.timestamp).toLocaleString(),
 			item: interaction.item,
 			duration: interaction.duration / 1000 || 'N/A',
+			selection: interaction.selection || 'N/A'
 		}
 	})
 
@@ -108,6 +133,7 @@ const Results = () => {
 		{ field: 'timestamp', headerName: 'Timestamp', width: 200 },
 		{ field: 'item', headerName: 'Item (If Any)', width: 175 },
 		{ field: 'duration', headerName: 'Duration (Seconds)', width: 175 },
+		{ field: 'other', headerName: 'Other', width: 250, renderCell: (params) => renderSelectionButton(params) }
 	];
 
 
@@ -134,7 +160,7 @@ const Results = () => {
 							<ListItemIcon className='mainlist'>
 								<Cookie/>
 							</ListItemIcon>
-							<ListItemText primary={`Your Public IP Address is: ${(data && data.IPv4 || 'Unable to retrieve')}`} className='mainlist'/>
+							<ListItemText primary={`Your Public IP Address is: ${((data && data.IPv4) || 'Unable to retrieve')}`} className='mainlist'/>
 						</ListItem>
 						<ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
 							<ListItemIcon className='mainlist'>
@@ -186,8 +212,17 @@ const Results = () => {
 				?
 				<div>
 					<Box sx={{width: '66%', marginLeft: 'auto', marginRight: 'auto'}}>
+						<Dialog open={dialogOpen}>
+							<DialogTitle>Selection:</DialogTitle>
+							<DialogContent>
+								<Typography>{dialogSelection}</Typography>
+							</DialogContent>
+							<DialogActions>
+								<Button variant='contained' onClick={() => setDialogOpen(false)}>Close</Button>
+							</DialogActions>
 
-						{ rows && columns ? <DataGrid rows={rows} columns={columns} pageSize={10} rowsPerPageOptions={[10, 25, 50]}autoHeight/> : null }
+						</Dialog>
+						{ rows && columns ? <DataGrid rows={rows} columns={columns} pageSize={10} rowsPerPageOptions={[10, 25, 50]} autoHeight rowHeight={100}/> : null }
 					</Box>	
 				</div>
 				: null
