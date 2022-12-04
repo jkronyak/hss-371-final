@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { List } from '@mui/material';
+import { List, Button } from '@mui/material';
 import ShopGridItem from './ShopGridItem'
 import actions from '../actions';
 
@@ -10,6 +11,7 @@ import { v4 as uuid } from 'uuid';
 const Cart = () => {
     const shopCart = useSelector((state) => state.data).shoppingCart;
     console.log(shopCart);
+	const [mouseHoverTime, setMouseHoverTime] = useState(0);
 
 
     const dispatch = useDispatch();
@@ -25,6 +27,23 @@ const Cart = () => {
         dispatch(actions.addInteraction({type: 'CLICK', target: 'REMOVE_ITEM_FROM_CART', timestamp: Date.now(), item: item.name}));
         dispatch(actions.removeItemFromCart(item.id));
 	}
+
+	const handleMouseEnter = (e) => { 
+		console.log("Mouse Enter");
+		setMouseHoverTime(Date.now());
+	}
+
+	const handleMouseLeave = (e, target) => { 
+		console.log("Mouse Leave");
+		if((Date.now() - mouseHoverTime) > 500)
+			dispatch(actions.addInteraction({type: 'HOVER', target: target, timestamp: Date.now(), duration: (Date.now() - mouseHoverTime)}));
+	}
+
+	const handleClick = (e, target) => { 
+		console.log("Click");
+		dispatch(actions.addInteraction({type: 'CLICK', target: target , timestamp: Date.now()}));
+	};
+
 
     const calcTot = (cart) => {
         let tot = 0;
@@ -45,6 +64,13 @@ const Cart = () => {
 
     return(
         <div>
+			<Link to={`/results`}>
+                <Button variant="contained" 
+				onClick={(e) => handleClick(e, 'CHECKOUT_BUTTON')}
+				onMouseEnter={(e) => handleMouseEnter(e)}
+				onMouseLeave={(e) => handleMouseLeave(e, "CHECKOUT_BUTTON")}
+				>Checkout</Button>
+            </Link>
             {
                 shopCart.length ?
                 <List sx={{maxWidth: '40%', marginLeft: 'auto', marginRight: 'auto', padding: '12px'}}>

@@ -8,8 +8,15 @@ import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 
 import { 
-	Box
+	Box,
+	Button,
+	Typography,
+	Chip,
+	Divider,
+	List, ListSubheader, ListItem, ListItemText, ListItemIcon
 } from '@mui/material';
+
+import Cookie from '@mui/icons-material/Cookie';
 
 import { 
 	DataGrid
@@ -21,16 +28,13 @@ const Results = () => {
 	const dispatch = useDispatch();
 
     const allData = useSelector((state) => state.data);
-    console.log(allData);
     const interactions = allData.userData.interactions;
-    console.log("INTERACTIONS", interactions);
-    const currentShoppingCart = allData.shoppingCart;
-    console.log(currentShoppingCart);
 
 	const [data, setData] = useState({});
+	const [interactionsToggle, setInteractionsToggle] = useState(true);
+
 
 	useEffect ( () => {
-		
 		const getData = async() => {
 			try {
 				const res = await axios.get('https://geolocation-db.com/json/');
@@ -38,7 +42,6 @@ const Results = () => {
 			} catch (e) {
 				console.log("Error", e);
 			}
-
 		}
 		getData();
 		const visitId = uuid();
@@ -101,8 +104,8 @@ const Results = () => {
 	// Interaction Type, Target, Timestamp, Item
 	const columns = [
 		{ field: 'type', headerName: 'Interaction Type', width: 175 },
-		{ field: 'target', headerName: 'Target', width: 175 },
-		{ field: 'timestamp', headerName: 'Timestamp', width: 175 },
+		{ field: 'target', headerName: 'Target', width: 250 },
+		{ field: 'timestamp', headerName: 'Timestamp', width: 200 },
 		{ field: 'item', headerName: 'Item (If Any)', width: 175 },
 		{ field: 'duration', headerName: 'Duration (Seconds)', width: 175 },
 	];
@@ -110,35 +113,85 @@ const Results = () => {
 
     return(
 		<div>
-			<h2>Interactions</h2>
+            <Divider variant='middle'  sx={{m: 2, maxWidth: '75%', marginLeft: 'auto', marginRight: 'auto'}}>
+                <Chip label='Results Page' sx={{fontWeight: 700, fontSize: '22px'}}/>
+            </Divider>
+			<Typography  sx={{maxWidth: '65%', marginLeft: 'auto', marginRight: 'auto'}} >
+				This is the results page. Here you can see the data that was collected during your visit to the site!
+				The collected data was assigned two different categories: <b>User Metadata</b> and <b>Site Interactions</b>.
+				User Metadata includes any information we were able collect from your browser and device.
+				Site Interactions includes any actions you took on the site, such as clicking on a button or viewing a page.
+				Companies use this type of data to predict what products their users may be more likely to purchase. 
+
+			</Typography>
 			<div>
-				<Box sx={{width: '66%', marginLeft: 'auto', marginRight: 'auto'}}>
-
-					{ rows && columns ? <DataGrid rows={rows} columns={columns} autoHeight/> : null }
-				</Box>
+            <Divider variant='middle'  sx={{m: 2, maxWidth: '75%', marginLeft: 'auto', marginRight: 'auto'}}>
+					<Chip label='User Metadata' sx={{fontWeight: 700, fontSize: '22px'}}/>
+				</Divider>
+				<div className='container'>
+					<List>
+						<ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+							<ListItemIcon className='mainlist'>
+								<Cookie/>
+							</ListItemIcon>
+							<ListItemText primary={`Your Public IP Address is: ${(data && data.IPv4 || 'Unable to retrieve')}`} className='mainlist'/>
+						</ListItem>
+						<ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+							<ListItemIcon className='mainlist'>
+								<Cookie/>
+							</ListItemIcon>
+							<ListItemText primary={`Your Machine Platform is ${navigator.platform}`} className='mainlist'/>
+						</ListItem>
+						<ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+							<ListItemIcon className='mainlist'>
+								<Cookie/>
+							</ListItemIcon>
+							<ListItemText primary={`Your cookes are: ${navigator.cookieEnabled ? "enabled" : "disabled"}`} className='mainlist'/>
+						</ListItem>
+						<ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+							<ListItemIcon className='mainlist'>
+								<Cookie/>
+							</ListItemIcon>
+							<ListItemText primary={`Your User Agent is: ${navigator.userAgent}`} className='mainlist'/>
+						</ListItem>
+						<ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+							<ListItemIcon className='mainlist'>
+								<Cookie/>
+							</ListItemIcon>
+							<ListItemText primary={`Your ISP Location is: ${data.city ? ` ${data.city}, ${data.state} ` : "Unable to retrieve'"}`} className='mainlist'/>
+						</ListItem>
+						<ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+							<ListItemIcon className='mainlist'>
+								<Cookie/>
+							</ListItemIcon>
+							<ListItemText primary={`Your Browser is: ${detectBrowser()}`} className='mainlist'/>
+						</ListItem>
+						<ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
+							<ListItemIcon className='mainlist'>
+								<Cookie/>
+							</ListItemIcon>
+							<ListItemText primary={`Your Browser is: ${operSys()}`} className='mainlist'/>
+						</ListItem>
+					</List>
 					
+				</div>
 			</div>
-
-			<h2>Cart</h2>
-			{
-				currentShoppingCart.map((item) => {
-					return(
-						<p key={item.id}>{item.name}</p>
-					)
-				})
-			}
-
-			<h2>User Meta Data</h2>
-			{
-				(data && data.IPv4) ? <p>Your Public IP Address is {data.IPv4}</p> : <p>Unable to get Public IP Address</p>
-			}
 			
-			<p>Your Machine Platform is {navigator.platform}</p>
-			{navigator.cookieEnabled ? <p>Your cookies are enabled</p>: <p>Your cookies are disabled</p>}
-			<p>Your Browser Agent is {navigator.userAgent}</p>
-			{ data.city? <p>Your ISP location is {data.city}, {data.state}</p> : <p>Your ISP location cannot be confirmed</p>}
-			<p>Your Browser is {detectBrowser()}</p>
-			<p>Your Operating System is {operSys()}</p>
+            <Divider variant='middle'  sx={{m: 2, maxWidth: '75%', marginLeft: 'auto', marginRight: 'auto'}}>
+					<Chip label='Site Interactions' sx={{fontWeight: 700, fontSize: '22px'}}/>
+				</Divider>
+			<Button variant="contained" sx={{marginBottom: '16px'}} onClick={() => setInteractionsToggle(!interactionsToggle)}>Show/Hide</Button>
+			{
+				interactionsToggle
+				?
+				<div>
+					<Box sx={{width: '66%', marginLeft: 'auto', marginRight: 'auto'}}>
+
+						{ rows && columns ? <DataGrid rows={rows} columns={columns} pageSize={10} rowsPerPageOptions={[10, 25, 50]}autoHeight/> : null }
+					</Box>	
+				</div>
+				: null
+			}
 		</div>
 	)
     

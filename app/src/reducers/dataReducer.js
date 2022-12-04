@@ -22,6 +22,13 @@ const initialState = {
             "Comfort is key for everyone, especially when you are working on code for so long. Don't get a cheap, "+
             "uncomfortable mouse that will give you carpal tunnel! And especially don't use that tiny old trackpad, "+
             "everyone knows those are a pain to use when doing work. Choose better living today with this mouse." },
+		{ id: 7, name: 'Antique: Xerox Mouse Prototype', price: 999999.99, imageUrl: "https://i.imgur.com/U6RYofe.png", description: "Designed by Douglas Engelbart in 1968,\
+			this device was the prototype for the world's first commercial computer mouse. It was originally introduced alongside the Xerox 8010 Star Information System - \
+			an early personal computer. Nowadways the mouse is a priceless relic." },
+		{ id: 8, name: 'Antique: Jacquard Loom', price: 109999.99, imageUrl: "https://i.imgur.com/MKfohwj.jpeg", description: "The Jacquard loom is a device for weaving \
+			patterns into textiles. It was invented by Joseph Marie Jacquard in 1804. The loom was a major step forward in the mechanization of textile production. \
+			Jacquard's invention was programmable via a punch card system - the same system that early computer technology would use." }
+
     ],
     userData: { 
         interactions: [ ],
