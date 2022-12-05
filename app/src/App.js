@@ -5,10 +5,10 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Shop from './components/Shop';
 import Results from './components/Results';
-import About from './components/About';
 import ShopItemPage from './components/ShopItemPage';
 import NavigationHeader from './components/NavigationHeader';
 import Cart from './components/Cart';
+import FourZeroFour from './components/FourZeroFour';
 
 function App() {
 
@@ -20,7 +20,7 @@ function App() {
         <header>
           <NavigationHeader/>
         </header>
-		<h1>HSS 371 Final Project</h1>
+		<h1>Top Notch Tech</h1>
         <Routes>
           {/* 
             This is where we define our Routes. 
@@ -30,8 +30,8 @@ function App() {
           <Route path='/shop' element={<Shop/>}></Route>
           <Route path='/shop/:id' element={<ShopItemPage/>}></Route>
           <Route path='/results' element={<Results/>}></Route>
-          <Route path='/about' element={<About/>}></Route>
           <Route path='/cart' element={<Cart/>}></Route>
+		      <Route path="/*" element={<FourZeroFour/>}></Route>
         </Routes>
       </Router>
     </div>
