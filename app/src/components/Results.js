@@ -182,7 +182,7 @@ const Results = () => {
 							<ListItemIcon className='mainlist'>
 								<Cookie/>
 							</ListItemIcon>
-							<ListItemText primary={`Your ISP Location is: ${data.city ? ` ${data.city}, ${data.state} ` : "Unable to retrieve'"}`} className='mainlist'/>
+							<ListItemText primary={`Your ISP Location is: ${data.city ? ` ${data.city}, ${data.state} ` : "Unable to retrieve"}`} className='mainlist'/>
 						</ListItem>
 						<ListItem sx={{display: 'list-item', padding: 0, textAlign: 'center', right: 20}}>
 							<ListItemIcon className='mainlist'>
